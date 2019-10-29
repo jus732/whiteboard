@@ -1,0 +1,29 @@
+{
+  "name": "jus732-final-project",
+  "version": "1.0.0",
+  "description": "Sometimes you wanna draw. Sometimes your friends wanna draw. And sometimes, you and your friends want to draw together! But other times you just need to share a board with some colleagues to keep track of important tasks.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nyu-csci-ua-0480-001-fall-2019/jus732-final-project.git"
+  },
+  "author": "Justin Santiago",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nyu-csci-ua-0480-001-fall-2019/jus732-final-project/issues"
+  },
+  "homepage": "https://github.com/nyu-csci-ua-0480-001-fall-2019/jus732-final-project#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^5.7.7",
+    "path": "^0.12.7",
+    "socket.io": "^2.3.0"
+  },
+  "devDependencies": {
+    "eslint": "^6.6.0",
+    "mocha": "^6.2.2"
+  }
+}
