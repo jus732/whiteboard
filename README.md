@@ -79,9 +79,10 @@ An Example Board:
     * Socket.io for real-time communication
     * Chatroom, live canvas
 
-* (5 points) React.js
-    * React.js for frontend
+* (5 points) Next.js
+    * React.js/Next.js for frontend
     * Change list display of user's drawings based off create/delete
+    * Interactive notes for each drawing
 
 ## [Link to Initial Main Project File](src/app.js)
 
