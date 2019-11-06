@@ -1,0 +1,23 @@
+<h1 id="sub-header">Notes!</h1>
+
+<form method="POST" id="add-notes">
+  <label>Title</label>
+  <input class="add-field" type="text" name="title">
+  <label>Body:</label>
+  <input class="add-field" type="text" name="notes">
+  <input class="review-field" type="submit">
+</form>
+
+<div id="my-notes">
+  <table>
+    {{#each notes}}
+    <tr id="row-headers">
+      <th>{{title}}</th>
+      <!-- <th><a style="color:red" href="/delete/{{_id}}">x</a></th> -->
+    </tr>
+    <tr>
+      <th>{{notes}}</th>
+    </tr>
+    {{/each}}
+  </table>
+</div>

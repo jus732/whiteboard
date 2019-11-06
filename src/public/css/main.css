@@ -1,0 +1,81 @@
+body
+{
+    background-color: #F5F5F5;
+    margin: 0;
+    font-family: helvetica;
+}
+
+h1
+{
+  color: ##003366;
+}
+
+#main-header
+{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  background-color: #a8c9e6;
+  color: #FFFFFF;
+}
+
+#nav
+{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  background-color: #003366;
+  text-align: center;
+  padding-top: 1.5em;
+  padding-bottom: 1.5em;
+  padding: 1em 0em 1em 10em;
+  margin: auto;
+  list-style-type: none;
+}
+
+.nav-item
+{
+  padding-right: 2em;
+}
+
+a
+{
+  text-decoration: none;
+  color: #F5F5F5;
+}
+
+#sub-header
+{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+#add-notes
+{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.add-field
+{
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+#my-notes
+{
+  display: flex;
+  justify-content: center;
+  margin-top: 2em;
+  margin-bottom: 2em;
+}
+
+#row-headers
+{
+  background-color: #003366;
+  color: #F5F5F5;
+  align-self: center;
+  width: 5em;
+}
