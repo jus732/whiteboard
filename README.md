@@ -74,9 +74,11 @@ An Example Board:
 
 * (3 points) Integrate drawing tool
     * p5.js for canvas
+    * different brush tools - brush size, shape, color, etc.
 
 * (5 points) Integrate real-time communication
     * Socket.io for real-time communication
+    * Different room IDs
     * Chatroom, live canvas
 
 <!-- * (5 points) Next.js

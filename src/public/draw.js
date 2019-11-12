@@ -1,9 +1,10 @@
-// canvas page w save function will be separate from user display
-//let socket;
+let socket;
 
+// p5 - setup canvas
 function setup()
 {
   const cv = createCanvas(900, 600);
+  // define parent element of canvas
   cv.parent('canvas-container');
   cv.background(0);
 
@@ -18,9 +19,11 @@ function setup()
   });
 }
 
+// constantly redrawn every frame
 function draw()
 {}
 
+// while mouse is held down
 function mouseDragged()
 {
   // console.log(mouseX + ',' + mouseY)
@@ -36,5 +39,4 @@ function mouseDragged()
   noStroke();
   fill(255);
   ellipse(mouseX, mouseY, 50, 50);
-
 }

@@ -64,7 +64,7 @@ io.sockets.on('connection', (socket) => {
 
   // handles location data sent from client
   socket.on('mouse', (data) => {
-     console.log(data);
+    // console.log(data);
     // send mouse data back out
     socket.broadcast.emit('mouse', data);
   });
