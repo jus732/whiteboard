@@ -79,3 +79,11 @@ a
   align-self: center;
   width: 5em;
 }
+
+#canvas-container
+{
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin: 1.5em 1.5em 1.5em 0em;
+}

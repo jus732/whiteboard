@@ -2,6 +2,7 @@ const path = require('path');
 const express = require('express');
 const db = require('./db.js');
 const mongoose = require('mongoose');
+const socket = require('socket.io');
 
 const Note = mongoose.model('Note');
 const app = express();
@@ -33,6 +34,10 @@ app.post('/', (req,res) => {
   });
 });
 
+app.get('/draw', (req,res) => {
+    res.render('draw');
+});
+
 // app.get('/delete/:id', (req,res) => {
 //   Note.find({req.params.id}, (err, note) => {
 //     note.remove()
@@ -47,17 +52,29 @@ app.post('/', (req,res) => {
 //   })
 // });
 
-// app.get('/draw', (req,res) => {
-//
-// });
-
-
 console.log("Server started. CTRL+C to exit.")
-app.listen(process.env.PORT || 3000);
+
+// socket.io implementation
+let server = app.listen(process.env.PORT || 3000);
+let io = socket(server);
+
+// handle new connections
+io.sockets.on('connection', (socket) => {
+  // console.log('new connection:' + socket.id);
+
+  // handles location data sent from client
+  socket.on('mouse', (data) => {
+     console.log(data);
+    // send mouse data back out
+    socket.broadcast.emit('mouse', data);
+  });
+});
 
 
-// currently, I'm a bit stuck trying to figure out the interaction between React, Express, and MongoDB, so I reverted to the version of my project that doesn't use
-// React - this is the code I currently have in the version of my app.js with React
+
+
+// I'm currently struggling a bit to figure out the interaction between React, Express, and MongoDB, so I reverted to the version of my project that doesn't use
+// React - this is the code I currently have in the version of my app.js with React, and the routes
 /*-----------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 // const express = require('express');
 // const session = require('express-session');
