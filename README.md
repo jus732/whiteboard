@@ -69,22 +69,20 @@ An Example Board:
     * Passport.js for user authentication
     * (Test account to be added)
 
-* (4 points) Perform client side form validation using a JavaScript library
-    * Will be a search bar based on titles
-
-* (3 points) Integrate drawing tool
+* (4 points) Integrate drawing tool
     * p5.js for canvas
-    * different brush tools - brush size, shape, color, etc.
+    * different brush tools - size, color, clear
 
-* (5 points) Integrate real-time communication
+* (4 points) Integrate real-time communication
     * Socket.io for real-time communication
-    * Different room IDs
     * Chatroom, live canvas
 
-<!-- * (5 points) Next.js
-    * React.js/Next.js for frontend
-    * Change list display of user's drawings based off create/delete
-    * Interactive notes for each drawing -->
+* (3 points) Perform client side form validation using a JavaScript library
+    * Will be a search bar based on titles
+
+* (2 points) Use CSS framework
+    * Bootstrap MD as framework
+
 
 ## [Link to Initial Main Project File](src/app.js)
 

@@ -54,7 +54,7 @@ a
 #add-notes
 {
   display: flex;
-  flex-direction: column;
+  flex-direction:column;
   align-items: center;
 }
 
@@ -82,8 +82,14 @@ a
 
 #canvas-container
 {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
   margin: 1.5em 1.5em 1.5em 0em;
+  box-sizing: border-box;
+  border: 2px solid black;
+}
+
+.container
+{
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

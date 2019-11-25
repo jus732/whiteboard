@@ -1,7 +1,24 @@
-<script src="./draw.js" type="text/javascript"></script>
+<script src="/scripts/draw.js" type="text/javascript"></script>
 <script src="/assets/socket.io.js" type="text/javascript"></script>
-<link rel="stylesheet" href="../css/draw.css">
 
-<div id="canvas-container">
+<div class="container-fluid">
+  <div class="row ml-5">
+    <div class="col mt-4 ml-5">
+      <h1>Placeholder for Notes</h1>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum at lacus bibendum, elementum sapien nec, mattis elit. Aliquam erat quam, euismod id diam ac, semper lacinia arcu. Sed imperdiet, tortor sit amet mollis vulputate, lectus nibh faucibus massa, in congue ex leo id nunc. Suspendisse eu purus sapien. Nulla nec accumsan quam, quis iaculis lorem. Aliquam erat volutpat. Donec orci sapien, maximus ac lobortis non, tempus ut magna. Cras eu lorem scelerisque, cursus tellus sed, fringilla ligula.
 
+      Curabitur aliquam neque at justo varius, ut gravida tortor efficitur. Donec et mauris libero. Pellentesque non mauris viverra, porta mi sed, aliquet nisl. Proin ut auctor ipsum. Vivamus consequat dolor nec enim bibendum facilisis id quis mauris. Cras dapibus mauris quis quam ullamcorper, sit amet ultrices nulla eleifend. Suspendisse ut semper mi. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam tincidunt vulputate mattis. Nulla faucibus auctor mi, ac gravida sem consectetur eu. In congue lacinia velit sit amet eleifend. Suspendisse ut metus at metus tempus posuere. Aenean congue metus in est cursus lacinia. Suspendisse efficitur, tortor non mollis mollis, massa nunc tincidunt velit, suscipit scelerisque nulla metus a elit.
+
+      Sed ornare faucibus bibendum. Integer ultricies pharetra eros ut condimentum. Nulla mollis, quam ac congue ornare, turpis ligula mollis nisi, id malesuada arcu turpis ut augue. Phasellus vulputate ut lorem ultricies dapibus. Fusce vitae porttitor ligula, at facilisis magna. Sed hendrerit dui erat, vitae commodo nisi tempor non. Integer rhoncus semper rutrum. Quisque luctus tellus ut tristique fringilla. Donec id commodo tortor.</p>
+    </div>
+    <div class="col mt-4 mr-5">
+      <h1>Board Title</h1>
+      <div id="canvas-container">
+      </div>
+      <div class="row" id="canvas-controls">
+        <p class="ml-3" id="stroke-color-picker">Stroke Color:</p>
+        <p class="ml-3" id="stroke-width-picker">Stroke Width:</p>
+      </div>
+    </div>
+  </div>
 </div>

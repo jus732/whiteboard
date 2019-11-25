@@ -18,6 +18,8 @@
   "homepage": "https://github.com/nyu-csci-ua-0480-001-fall-2019/jus732-final-project#readme",
   "dependencies": {
     "express": "^4.17.1",
+    "express-session": "^1.17.0",
+    "express-validator": "^6.3.0",
     "hbs": "^4.0.6",
     "mongoose": "^5.7.7",
     "p5": "^0.10.2",
