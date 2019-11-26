@@ -10,7 +10,7 @@ function setup()
   const cv = createCanvas(800, 600);
   // define parent element of canvas
   cv.parent('canvas-container');
-  cv.class('border border-primary');
+  cv.class('border border-dark navbar');
   cv.background(255);
   // prevents draw function from looping indefinitely
 
