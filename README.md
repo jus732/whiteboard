@@ -4,7 +4,7 @@
 
 Sometimes you wanna draw. Sometimes your friends wanna draw. And sometimes, you and your friends want to draw together! But other times you just need to share a board with some colleagues to keep track of important tasks.
 
-Whiteboard is a web app that will allow users to draw on an online whiteboard together in real-time, with the option of drawing solo as well.  Users can register and log in. Unregistered users are able to use a whiteboard with others, but only registered users are able to save their boards with the option to view, edit, or delete them as they please.
+Whiteboard is a web app that will allow users to draw on an online whiteboard together in real-time, with the option of drawing solo as well. Users can keep notes for their sessions and export their drawings.
 
 
 ## Data Model

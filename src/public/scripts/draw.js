@@ -1,16 +1,18 @@
 let socket;
 let strokeColor = '#000000';
 let strokeWidth = 5;
+let strokeHistory = [];
 
 // p5 - setup canvas
 
 function setup()
 {
-  const cv = createCanvas(900, 600);
+  const cv = createCanvas(800, 600);
   // define parent element of canvas
   cv.parent('canvas-container');
   cv.class('border border-primary');
   cv.background(255);
+  // prevents draw function from looping indefinitely
 
   // creates stroke color/width picker and adds to DOM
   const colorPicker = createColorPicker(strokeColor);
@@ -56,14 +58,32 @@ function setup()
     stroke(data.strokeColor);
     strokeWeight(data.strokeWidth);
     line(data.x, data.y, data.pX, data.pY);
-    // noStroke();
-    // fill(data.strokeColor);
-    // ellipse(data.x, data.y, 50, 50);
+
+    // add stroke data to history array
+    strokeHistory.push({
+      strokeColor: data.strokeColor,
+      strokeWidth: data.strokeWidth,
+      x: data.x,
+      y: data.y,
+      pX: data.pX,
+      pY: data.pY
+    });
   });
 
   socket.on('clearBtnClick', () => {
     clear();
   });
+}
+
+// constantly redrawn every frame
+function draw()
+{
+  for(let i=0; i < strokeHistory.length; i++)
+  {
+    stroke(strokeHistory[i].strokeColor);
+    strokeWeight(strokeHistory[i].strokeWidth);
+    line(strokeHistory[i].x, strokeHistory[i].y, strokeHistory[i].pX, strokeHistory[i].pY);
+  }
 }
 
 // resets canvas
@@ -79,9 +99,6 @@ function downloadCanvas(canvas)
   saveCanvas(canvas, 'myCanvas', 'png');
 }
 
-// constantly redrawn every frame
-function draw()
-{}
 
 // while mouse is held down
 function mouseDragged()
@@ -103,14 +120,14 @@ function mouseDragged()
   stroke(strokeColor);
   strokeWeight(strokeWidth);
   line(mouseX, mouseY, pmouseX, pmouseY);
-  // ellipse(mouseX, mouseY, 50, 50);
 }
 
 // converts canvas to base64 png and creates Board document using form input
-// buggy - does save canvas and title/notes to database, but does not save modified canvas
+// buggy - does save canvas and title/notes to database, but does not save modified canvas/base64 issues
 async function createBoard()
 {
   const convertedBoard = document.querySelector('canvas').toDataURL('image/png');
+  // console.log(convertedBoard);
   const boardTitle = document.getElementById('board-title').value;
   const boardNotes = document.getElementById('board-notes').value;
   const data = 'board=' + convertedBoard + '&title=' + boardTitle + '&notes=' + boardNotes;

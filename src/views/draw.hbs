@@ -2,11 +2,13 @@
 <script src="/assets/socket.io.js" type="text/javascript"></script>
 
 <div class="container-fluid">
-  <div class="row justify-content-center mt-3">
+  <div class="row justify-content-center mt-4">
+    <div id="canvas-container">
+    </div>
+  </div>
+  <div class="row justify-content-center mt-1">
     <div >
       <h1 class="text-center text-primary display-3">Draw!</h1>
-      <div id="canvas-container">
-      </div>
       <div class="row" id="canvas-controls">
         <h5 class="ml-3 mt-2" id="stroke-color-picker">Stroke Color:</h5>
         <h5 class="ml-3 mt-2" id="stroke-width-picker">Stroke Width:</h5>
@@ -15,7 +17,7 @@
   </div>
 </div>
 
-<div class="modal fade" id="modal-save-canvas" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="modal-save-canvas" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">

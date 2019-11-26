@@ -6,6 +6,7 @@ const socket = require('socket.io');
 const session = require('express-session');
 const timestamp = require('time-stamp');
 const { check, validationResult } = require('express-validator');
+const MongoStore = require('connect-mongo')(session);
 
 const Board = mongoose.model('Board');
 const Note = mongoose.model('Note');
@@ -14,43 +15,48 @@ const publicPath = path.resolve(__dirname, 'public');
 app.set('view engine', 'hbs');
 app.use(express.static(publicPath));
 app.use(express.urlencoded({limit:'50mb', extended: false}));
+app.use(session({
+  secret: 'this is super secret',
+  saveUninitialized: false,
+  resave: false,
+  cookie: {
+    maxAge: 1000 * 60 * 60 * 2,
+    sameSite: true
+  }
+}));
 
 //inserted this session
 
 app.get('/', (req, res) => {
   const titleSearch = req.query.titleSearch;
 
-  Note.find({}, (err, notes) =>{
-    if(err)
-    {
-      console.log(err);
-    }
-    let newNotes = false;
-    let useNew;
-    newNotes = notes.filter((note) => {
-      if(note.title.includes(titleSearch))
+  Board.find({}, (err, boards) => {
+    Note.find({}, (err, notes) =>{
+      if(err)
       {
-        useNew = true;
-        return note;
+        console.log(err);
+      }
+      let newNotes = false;
+      let useNew;
+      newNotes = notes.filter((note) => {
+        if(note.title.includes(titleSearch))
+        {
+          useNew = true;
+          return note;
+        }
+      });
+
+      // console.log(newNotes);
+      if(useNew)
+      {
+        res.render('home', {boards: boards, notes:newNotes});
+      }
+      else
+      {
+        res.render('home', {boards: boards, notes:notes});
       }
     });
-
-    console.log(newNotes);
-    if(useNew)
-    {
-      res.render('home', {notes:newNotes});
-    }
-    else
-    {
-      res.render('home', {notes:notes});
-    }
   });
-  // commented out due to bugs
-  // Board.find({}, (err, boards) => {
-  //   Note.find({}, (err, notes) => {
-  //     res.render('home', {boards:boards, notes:notes});
-  //   });
-  // });
 });
 
 app.get('/draw', (req,res) => {
@@ -66,7 +72,6 @@ app.post('/draw', [
 
   const err = validationResult(req);
   if (!err.isEmpty()) {
-    console.log(err.array());
     return res.json({
       err: err.array()
     });
@@ -80,13 +85,15 @@ app.post('/draw', [
    })
    note.save();
 
-   // const ts = timestamp();
    const newBoard = new Board({
      board: req.body.board,
      createdAt: timestamp(),
-     notes: note
+     notes: {
+       title: note.title,
+       noteBody: note.noteBody,
+       _id: note._id
+     }
    });
-
    // if error, send back error; if ok, send back in json
    newBoard.save((err, board, count) => {
      if(err)

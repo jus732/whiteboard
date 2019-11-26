@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-
+const Schema = mongoose.Schema;
 // is the environment variable, NODE_ENV, set to PRODUCTION?
 let dbconf;
 if (process.env.NODE_ENV === 'PRODUCTION') {
@@ -19,9 +19,9 @@ if (process.env.NODE_ENV === 'PRODUCTION') {
  dbconf = 'mongodb://localhost/js9164';
 }
 
-mongoose.connect(dbconf);
+const dbConnection = mongoose.connect(dbconf);
 
-// const User = new mongoose.Schema({
+// const User = new Schema({
 //   username: String,
 //   hash: String,
 //   notes: Array,
@@ -30,18 +30,26 @@ mongoose.connect(dbconf);
 //
 // mongoose.model('User', User);
 
-const Note = new mongoose.Schema({
+const Note = new Schema({
   title: String,
   noteBody: String
 });
 
 mongoose.model('Note', Note);
 
-const Board = new mongoose.Schema({
+const Board = new Schema({
   board: String, // will be data url
   createdAt: String,
   // to refer to another Schema, use population
-  notes: {type: mongoose.Schema.Types.ObjectId, ref: 'Note'}
+  notes: {
+    title: String,
+    noteBody: String,
+    _id: Schema.Types.ObjectId
+  }
 });
 
 mongoose.model('Board', Board);
+
+module.exports = {
+  dbConnection: dbConnection
+}
