@@ -3,54 +3,99 @@ const express = require('express');
 const db = require('./db.js');
 const mongoose = require('mongoose');
 const socket = require('socket.io');
+const session = require('express-session');
+const timestamp = require('time-stamp');
+const { check, validationResult } = require('express-validator');
 
+const Board = mongoose.model('Board');
 const Note = mongoose.model('Note');
 const app = express();
 const publicPath = path.resolve(__dirname, 'public');
 app.set('view engine', 'hbs');
 app.use(express.static(publicPath));
-app.use(express.urlencoded({extended: false}));
+app.use(express.urlencoded({limit:'50mb', extended: false}));
 
 //inserted this session
 
 app.get('/', (req, res) => {
-  Note.find({}, (err, notes) => {
-    res.render('home', {notes: notes});
-  })
-});
+  const titleSearch = req.query.titleSearch;
 
-app.post('/', (req,res) => {
-  const note = new Note({
-    title: req.body.title,
-    notes: req.body.notes
-  });
-
-  note.save((err) => {
+  Note.find({}, (err, notes) =>{
     if(err)
     {
-      return console.log(err);
+      console.log(err);
     }
-    res.redirect('/');
+    let newNotes = false;
+    let useNew;
+    newNotes = notes.filter((note) => {
+      if(note.title.includes(titleSearch))
+      {
+        useNew = true;
+        return note;
+      }
+    });
+
+    console.log(newNotes);
+    if(useNew)
+    {
+      res.render('home', {notes:newNotes});
+    }
+    else
+    {
+      res.render('home', {notes:notes});
+    }
   });
+  // commented out due to bugs
+  // Board.find({}, (err, boards) => {
+  //   Note.find({}, (err, notes) => {
+  //     res.render('home', {boards:boards, notes:notes});
+  //   });
+  // });
 });
 
 app.get('/draw', (req,res) => {
     res.render('draw');
 });
 
-// app.get('/delete/:id', (req,res) => {
-//   Note.find({req.params.id}, (err, note) => {
-//     note.remove()
-//   })
-//   ({_id: mongodb.ObjectID(req.params.id)}, (err, result) => {
-//     if(err)
-//     {
-//       return console.log(err);
-//     }
-//     console.log(req.body);
-//     res.redirect('/');
-//   })
-// });
+// buggy - does save canvas and title/notes to database, but does not save modified canvas;
+app.post('/draw', [
+  // validate - make sure title and note body are filled
+  check('title').isLength({min: 1}),
+  check('notes').isLength({min: 1})
+], (req, res) => {
+
+  const err = validationResult(req);
+  if (!err.isEmpty()) {
+    console.log(err.array());
+    return res.json({
+      err: err.array()
+    });
+  }
+
+   // Create a new board document w/ notes
+   // Send back json (if new document created, send it back in json)
+   const note = new Note({
+     title: req.body.title,
+     noteBody: req.body.notes
+   })
+   note.save();
+
+   // const ts = timestamp();
+   const newBoard = new Board({
+     board: req.body.board,
+     createdAt: timestamp(),
+     notes: note
+   });
+
+   // if error, send back error; if ok, send back in json
+   newBoard.save((err, board, count) => {
+     if(err)
+     {
+       res.json({key: err});
+     }
+     res.json(board);
+   });
+});
 
 console.log("Server started. CTRL+C to exit.")
 

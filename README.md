@@ -9,18 +9,16 @@ Whiteboard is a web app that will allow users to draw on an online whiteboard to
 
 ## Data Model
 
-The application will store Users and Boards
+The application will store Boards and Notes
 
-* users can have multiple boards (via references)
-* boards can have multiple users (via references)
+* each board has a note attached by reference
 
-An Example User:
+An Example Note:
 
 ```JavaScript
 {
-  username: "drawguy123",
-  hash: // password hash,
-  boards: // array of references to Board documents
+  title: "the title",
+  noteBody: "the body"
 }
 ```
 
@@ -28,9 +26,9 @@ An Example Board:
 
 ```JavaScript
 {
-  users: // array of references to User documents,
-  name: "Art",
+  board: , // the saved board in base64
   createdAt: // timestamp
+  notes: Note
 }
 ```
 
@@ -55,19 +53,12 @@ An Example Board:
 
 ## User Stories or Use Cases
 
-1. As a non-registered user, I can register a new account
-2. As a non-registered user, I can start a new board
-3. As a non-registered user, I can temporarily save my board
-4. As a non-registered user, I can export my boards as images
-5. As a user, I can log in to the site.
-6. As a user, I can save and delete boards to and from my account.
-7. As a user, I can see all my boards in a list
+1. As a user, I can start a new board and draw in real-time
+2. As a user, I can export my boards as images
+3. As a user, I can see my notes in a list
+4. As a user, I can search through my notes by title
 
 ## Research Topics
-
-* (5 points) Integrate user authentication
-    * Passport.js for user authentication
-    * (Test account to be added)
 
 * (4 points) Integrate drawing tool
     * p5.js for canvas
@@ -75,7 +66,7 @@ An Example Board:
 
 * (4 points) Integrate real-time communication
     * Socket.io for real-time communication
-    * Chatroom, live canvas
+    * Live canvas
 
 * (3 points) Perform client side form validation using a JavaScript library
     * Will be a search bar based on titles
@@ -87,5 +78,3 @@ An Example Board:
 ## [Link to Initial Main Project File](src/app.js)
 
 ## Annotations / References Used
-
-TBD

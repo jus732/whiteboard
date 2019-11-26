@@ -24,7 +24,8 @@
     "mongoose": "^5.7.7",
     "p5": "^0.10.2",
     "path": "^0.12.7",
-    "socket.io": "^2.3.0"
+    "socket.io": "^2.3.0",
+    "time-stamp": "^2.2.0"
   },
   "devDependencies": {
     "eslint": "^6.6.0",

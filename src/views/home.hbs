@@ -2,52 +2,32 @@
 
 <div class="container-fluid">
   <div class="row">
-    <div class="col-4 mt-5 ml-5">
-      <button type="button" class="btn btn-primary border ml-1">Login/Register</button>
-      <!-- make button hidden if logged in -->
-      <h2>My Boards</h2>
+    <div class="col-4 mt-5 ml-5 border border-primary rounded bg-primary">
+      <!-- <button type="button" class="btn btn-primary border ml-1">Login/Register</button> -->
+      <h2 class="text-light text-center"><u><strong>My Notes</strong></u></h2>
       <nav class="navbar navbar-expand-sm navbar-light bg-light">
         <form class="form-inline ml-5">
-          <input class="form-control ml-5" type="search" placeholder="Search" aria-label="Search Boards">
+          <input class="form-control ml-5" type="search" placeholder="Search" name="titleSearch" aria-label="Search Boards">
           <button class="btn btn-outline-success ml-5" type="submit">Search</button>
         </form>
       </nav>
+      <div class="mt-3">
+        <!-- {{#each boards}} does not work :( ran into issues with storing the board image
+        <img src={{board}} class="img-thumbnail"></img>
+        <p>Created: {{createdAt}}</p>
+        {{/each}} -->
+        {{#each notes}}
+        <div>
+          <h3 class="text-light text-center"><u>{{title}}</u></h3>
+          <h5 class=" text-center">{{noteBody}}</h5>
+        </div>
+        {{/each}}
+      </div>
     </div>
-    <div class="col-7 mt-5">
-
+    <div class="col-7 mt-5 ml-5">
+      <h1 class="display-2 text-primary">This is Whiteboard!</h1>
+      <h3 class="text-secondary">On this page, you can save some notes about whatever you feel like. And search them by title!</h3>
+      <h3>Click on the Draw link in the navbar to draw in real time with friends!</h3>
     </div>
   </div>
 </div>
-
-
-<!-- <div id="modal-question" class="modal">
-  <div class="modal-content">
-    <input type="text" id="question-text" name="title" value="">
-    <input type="button" class="submit" id="create-question" value="Ask">
-    <input type="button" class="close" value="Cancel">
-  </div>
-</div>
-
-<h1 id="sub-header">Notes!</h1>
-
-<form method="POST" id="add-notes">
-  <label>Title</label>
-  <input class="add-field" type="text" name="title">
-  <label>Body:</label>
-  <input class="add-field" type="text" name="notes">
-  <input class="review-field" type="submit">
-</form>
-
-<div id="my-notes">
-  <table>
-    {{#each notes}}
-    <tr id="row-headers">
-      <th>{{title}}</th>
-       <th><a style="color:red" href="/delete/{{_id}}">x</a></th> !!!!!!!!!!!!!!!!
-    </tr>
-    <tr>
-      <th>{{notes}}</th>
-    </tr>
-    {{/each}}
-  </table>
-</div> -->

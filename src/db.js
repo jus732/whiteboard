@@ -21,26 +21,27 @@ if (process.env.NODE_ENV === 'PRODUCTION') {
 
 mongoose.connect(dbconf);
 
-const User = new mongoose.Schema({
-  username: String,
-  hash: String,
-  notes: Array,
-  boards: Array
-});
-
-mongoose.model('User', User);
+// const User = new mongoose.Schema({
+//   username: String,
+//   hash: String,
+//   notes: Array,
+//   boards: Array
+// });
+//
+// mongoose.model('User', User);
 
 const Note = new mongoose.Schema({
   title: String,
-  notes: String
+  noteBody: String
 });
 
 mongoose.model('Note', Note);
 
 const Board = new mongoose.Schema({
-  name: String,
+  board: String, // will be data url
   createdAt: String,
-  Users: Array
+  // to refer to another Schema, use population
+  notes: {type: mongoose.Schema.Types.ObjectId, ref: 'Note'}
 });
 
 mongoose.model('Board', Board);
